@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python scripts/model_preprocess.py --input Data/raw/train.csv --output Data/Preprocessed/train_edited.csv
+    deps:
+    - path: Data/raw/train.csv
+      hash: md5
+      md5: d47aedd9e2d580e06a6ef7ce1732e8b6
+      size: 38057952
+    - path: scripts/model_preprocess.py
+      hash: md5
+      md5: 0e11334e8adcdd6de39f7c46948c7673
+      size: 2531
+    outs:
+    - path: Data/Preprocessed/train_edited.csv
+      hash: md5
+      md5: 52c95bd511ee09faa6b02af47606ec5f
+      size: 142583805
+  train:
+    cmd: python scripts/model_train.py --input Data/Preprocessed/train_edited.csv
+    deps:
+    - path: Data/Preprocessed/train_edited.csv
+      hash: md5
+      md5: 52c95bd511ee09faa6b02af47606ec5f
+      size: 142583805
+    - path: scripts/model_train.py
+      hash: md5
+      md5: 825fb409ad5ae28589dec3c5b3d65a66
+      size: 1041
+  evaluate:
+    cmd: python scripts/model_evaluation.py --input Data/Preprocessed/train_edited.csv  --model
+      2025-01-11_17-39-53.pkl --output metrics.json
+    deps:
+    - path: 2025-01-11_17-39-53.pkl
+      hash: md5
+      md5: b8848e434db31cbb8f7e86fddcb41adc
+      size: 6149900001
+    - path: Data/Preprocessed/train_edited.csv
+      hash: md5
+      md5: 52c95bd511ee09faa6b02af47606ec5f
+      size: 142583805
+    - path: scripts/model_evaluation.py
+      hash: md5
+      md5: 2dea38b7e214a8359e912991711c6911
+      size: 1187
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: b44cb730f78cdfb53ac22da6affa8aae
+      size: 84
