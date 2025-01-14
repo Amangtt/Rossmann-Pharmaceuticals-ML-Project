@@ -29,7 +29,10 @@ class preprocess:
         logging.info('Handling data....')
         fill=['CompetitionDistance','CompetitionOpenSinceMonth','CompetitionOpenSinceYear','Promo2SinceWeek','Promo2SinceYear','PromoInterval']
         stores[fill]=stores[fill].fillna(0)
+        stores.to_csv('./Data/Preprocessed/Store_edited.csv', index=False)
         df_test = df_test.dropna(subset=['Open'])
+        df_test.to_csv('./Data/Preprocessed/Test_edited.csv', index=False)
         return df,df_test,stores
-
+    
+    
 
