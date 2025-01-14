@@ -5,14 +5,11 @@
 
 - [Overview](#overview)
 - [Objective](#objective)
-- [Requirement](#requirement)
 - [Install](#install)
 - [Data](#data)
 - [Features](#features)
 - [Notebooks](#notebooks)
-- [Models](#models)
 - [Scripts](#scripts)
-- [Test](#test)
 - [Author](#author)
 
 
