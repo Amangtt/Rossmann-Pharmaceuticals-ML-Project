@@ -1,0 +1,22 @@
+stages:
+  preprocess:
+    cmd: python scripts/model_preprocess.py --input Data/raw/train.csv --output Data/Preprocessed/train_edited.csv
+    deps:
+      - scripts/model_preprocess.py
+      - Data/raw/train.csv
+    outs:
+      - Data/Preprocessed/train_edited.csv
+  train:
+    cmd: python scripts/model_train.py --input Data/Preprocessed/train_edited.csv 
+    deps:
+      - scripts/model_train.py
+      - Data/Preprocessed/train_edited.csv
+  evaluate:
+    cmd: python scripts/model_evaluation.py --input Data/Preprocessed/train_edited.csv  --model 2025-01-11_17-39-53.pkl --output metrics.json
+    deps:
+      - scripts/model_evaluation.py
+      - Data/Preprocessed/train_edited.csv
+      - 2025-01-11_17-39-53.pkl
+    outs:
+      - metrics.json
+  
